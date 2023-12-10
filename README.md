@@ -82,5 +82,12 @@ http://localhost:8000/api/exchangeRate?source=JPY&target=USD&amount=10
 參數:source, target, amount為必填
 source, target幣別只支援 TWD, USD, JPY
 
+### 執行單元測試
+開啟Terminal，輸入以下指令
+```bash
+php artisan test
+```
 
-
+### 補充
+主要邏輯是 app/HTTP/Controllers/api/ExchangeRateController.php
+單元測試是 tests/Unit/ExchangeRateTest.php
