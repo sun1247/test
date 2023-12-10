@@ -1,66 +1,86 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## 專安內容
+幣別匯率轉換
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## 安裝
 
-## About Laravel
+> 請務必依據你的專案來調整內容。
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+以下將會引導你如何安裝此專案到你的電腦上。
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### 下載XAMPP
+PHP + Apache + MariaDB懶人包
+```bash
+https://www.apachefriends.org/zh_tw/download.html
+```
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 安裝composar
 
-## Learning Laravel
+下載網址
+```bash
+https://getcomposer.org/download/
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 取得專案
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+```bash
+git clone git@github.com:hsiangfeng/README-Example-Template.git
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 下載Laravel安裝器
+開啟Terminal，輸入以下指令
+```bash
+composer global require laravel/installer
+```
 
-## Laravel Sponsors
+將下載的專案放進xampp/htdocs
+生成應用金鑰，開啟Terminal，切換到新建立的專案資料夾，請輸入指令
+```bash
+php artisan key:generate
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+### 設定本地化網域
+告訴此網域需要由哪個專案資料夾來接手，作法是修改httpd-vhost.conf，路徑應根據您的狀況作調整
+```bash
+//XAMPP資料夾\apache\conf\extra\httpd-vhosts.conf
+ 
+<VirtualHost *:80>
+    DocumentRoot "c:\xampp\htdocs\app_name\public"  
+    ServerName laravel.test       
+    <Directory "c:\xampp\htdocs\app_name\public">
+        Options FollowSymLinks
+        AllowOverride None
+        Order allow,deny
+        Allow from all
+    </Directory>
+</VirtualHost>
+```
+要求Apache開啟時需讀取httpd-vhosts.conf，作法是修改 XAMPP資料夾\apache\conf\original\httpd.conf。找到httpd-vhosts.conf那一行，把前面的#註解移除
+重開Apache服務，訪問http://laravel.test，看能否順利開啟
 
-### Premium Partners
+### 運行專案
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+```bash
+php artisan serve
+```
 
-## Contributing
+### 開啟專案
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+在瀏覽器網址列輸入以下即可看到畫面
 
-## Code of Conduct
+```bash
+http://localhost:8000/
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 呼叫api
+打開瀏覽器並貼上
+```bash
+http://localhost:8000/api/exchangeRate?source=JPY&target=USD&amount=10
+```
+即可成功呼叫
 
-## Security Vulnerabilities
+`注意`
+參數:source, target, amount為必填
+source, target幣別只支援 TWD, USD, JPY
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
