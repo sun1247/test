@@ -89,8 +89,14 @@ php artisan test
 ```
 
 ### 補充
-主要邏輯是 app/HTTP/Controllers/api/ExchangeRateController.php
-單元測試是 tests/Unit/ExchangeRateTest.php
+主要邏輯是
+```bash
+app/HTTP/Controllers/api/ExchangeRateController.php
+```
+單元測試是
+```bash
+tests/Unit/ExchangeRateTest.php
+```
 
 
 
