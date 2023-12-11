@@ -23,8 +23,7 @@ https://getcomposer.org/download/
 ### 取得專案
 
 ```bash
-git clone
-https://github.com/sun1247/test.git
+git clone https://github.com/sun1247/test.git
 ```
 
 ### 下載Laravel安裝器
